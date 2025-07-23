@@ -1,0 +1,110 @@
+🛠️ Paso 1: Estructura inicial del backend
+
+1.1. 📁 Crea la carpeta del proyecto:
+bash
+Copiar
+Editar
+
+
+mkdir api-inventario
+cd api-inventario
+npm init -y
+
+1.2. 📦 Instala dependencias:
+bash
+Copiar
+Editar
+
+npm install express pg dotenv cors
+npm install --save-dev nodemon
+
+🗂️ Paso 2: Estructura de carpetas
+
+api-inventario/
+├── src/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── db.js
+│   └── app.js
+├── .env
+├── index.js
+├── package.json
+
+
+🔌 Paso 3: Configura tu archivo .env
+
+Crea el archivo .env con tus credenciales de PostgreSQL:
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=tu_usuario
+DB_PASSWORD=tu_contraseña
+DB_NAME=inventario
+
+📚 Paso 4: Configura la conexión a PostgreSQL (src/db.js)
+
+import pkg from 'pg';
+import dotenv from 'dotenv';
+dotenv.config();
+
+const { Pool } = pkg;
+
+export const pool = new Pool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+});
+
+🌐 Paso 5: Configura Express (src/app.js)
+
+import express from 'express';
+import cors from 'cors';
+import productRoutes from './routes/product.routes.js';
+import movementRoutes from './routes/movement.routes.js';
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+// Rutas
+app.use('/api/products', productRoutes);
+app.use('/api/movements', movementRoutes);
+
+export default app;
+
+🚀 Paso 6: Archivo principal (index.js)
+
+import app from './src/app.js';
+
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
+
+
+📦 Paso 7: Scripts en package.json
+
+"scripts": {
+  "dev": "nodemon index.js"
+}
+
+✅ ¿Qué sigue?
+Crear las rutas y controladores para:
+
+Productos
+
+Movimientos de stock
+
+Crear las tablas en PostgreSQL
+
+
+¿Te armo ahora el SQL para crear las tablas en PostgreSQL? ¿Y seguimos con las rutas para /products y /movements?
+
+
+
+

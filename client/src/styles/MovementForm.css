@@ -1,0 +1,36 @@
+form {
+  max-width: 400px;
+  width: 90%;
+  margin-bottom: 20px;
+}
+
+input,
+select,
+button {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #1e40af;
+  color: blue;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2563eb;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  form {
+    max-width: 100%;
+  }
+}
